@@ -1,6 +1,8 @@
 import React from 'react';
-import InventoryDetail from './InventoryDetail';
+import IngredientForm from './ingredients/IngredientForm';
 
 export default function App() {
-  return <InventoryDetail />;
+  return (
+    <IngredientForm />
+  );
 }
