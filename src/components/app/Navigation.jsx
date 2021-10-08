@@ -59,13 +59,19 @@ function Navigation(props) {
       </List>
       <Divider />
       <List>
-        {['Account Settings', 'About Bienventory', 'Logout'].map(
-          (text, index) => (
-            <ListItem button key={index}>
-              <ListItemText primary={text} />
-            </ListItem>
-          )
-        )}
+        {['Account Settings', 'About Bienventory'].map((text, index) => (
+          <ListItem button key={index}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {['Logout'].map((text, index) => (
+          <ListItem button key={index}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
       </List>
     </div>
   );
