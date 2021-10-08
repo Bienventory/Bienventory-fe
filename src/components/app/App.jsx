@@ -26,45 +26,53 @@ export default class App extends Component {
   };
 
   render() {
-    return (
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <Navigation />
-
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Toolbar />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(routerProps) =>
-                !this.state.token ? (
-                  <Login {...routerProps} event={this.handleSetState} />
-                ) : !this.state.user ? (
-                  <IngredientForm
-                    {...routerProps}
-                    event={this.handleSetState}
-                  />
-                ) : (
-                  <Redirect to="/dashboard" />
-                )
-              }
-            />
-
-            <Route
-              exact
-              path="/dashboard"
-              render={(routerProps) =>
-                this.state.token && this.state.user ? (
-                  <Dashboard {...routerProps} user={this.state.user} />
-                ) : (
-                  <Redirect to="/" />
-                )
-              }
-            />
-          </Switch>
+    if (!this.state.token) {
+      return (
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <Login event={this.handleSetState} />
         </Box>
-      </Box>
-    );
+      );
+    }
+
+    if (this.state.token) {
+      return (
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <Navigation />
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Toolbar />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(routerProps) =>
+                  !this.state.user ? (
+                    <IngredientForm
+                      {...routerProps}
+                      event={this.handleSetState}
+                    />
+                  ) : (
+                    <Redirect to="/dashboard" />
+                  )
+                }
+              />
+
+              <Route
+                exact
+                path="/dashboard"
+                render={(routerProps) =>
+                  this.state.token && this.state.user ? (
+                    <Dashboard {...routerProps} user={this.state.user} />
+                  ) : (
+                    <Redirect to="/" />
+                  )
+                }
+              />
+            </Switch>
+          </Box>
+        </Box>
+      );
+    }
   }
 }
