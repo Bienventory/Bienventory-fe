@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import IngredientForm from './ingredients/IngredientForm';
-import Navigation from './Navigation';
 import Toolbar from '@mui/material/Toolbar';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import Dashboard from './Dashboard';
+import IngredientForm from './ingredients/IngredientForm';
+import IngredientDetail from './ingredients/IngredientDetail';
 import Login from './Login';
-import Dashboard from '../Dashboard';
+import Navigation from './Navigation';
 
 export default class App extends Component {
   state = {
@@ -26,7 +28,7 @@ export default class App extends Component {
   };
 
   render() {
-    if (!this.state.token) {
+    if (!this.state.token && !this.state.user) {
       return (
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
@@ -35,39 +37,31 @@ export default class App extends Component {
       );
     }
 
-    if (this.state.token) {
+    if (this.state.token && !this.state.user) {
+      return (
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <Typography>Get started by adding your first ingredient!</Typography>
+          <IngredientForm />
+        </Box>
+      );
+    }
+
+    if (this.state.token && this.state.user) {
       return (
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <Navigation />
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
+
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={(routerProps) =>
-                  !this.state.user ? (
-                    <IngredientForm
-                      {...routerProps}
-                      event={this.handleSetState}
-                    />
-                  ) : (
-                    <Redirect to="/dashboard" />
-                  )
-                }
-              />
+              <Route exact path="/" component={Dashboard} />
 
               <Route
                 exact
-                path="/dashboard"
-                render={(routerProps) =>
-                  this.state.token && this.state.user ? (
-                    <Dashboard {...routerProps} user={this.state.user} />
-                  ) : (
-                    <Redirect to="/" />
-                  )
-                }
+                path="/ingredient/:name"
+                component={IngredientDetail}
               />
             </Switch>
           </Box>
