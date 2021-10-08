@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -17,12 +16,16 @@ import PropTypes from 'prop-types';
 const drawerWidth = 240;
 
 function Navigation(props) {
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const container = 
+    window !== undefined ? () => window().document.body : undefined;
 
   const drawer = (
     <div>
@@ -53,12 +56,8 @@ function Navigation(props) {
     </div>
   );
 
-  const container = 
-    window !== undefined ? () => window().document.body : undefined;
-
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+    <>
       <AppBar
         position="fixed"
         sx={{
@@ -118,9 +117,8 @@ function Navigation(props) {
           {drawer}
         </Drawer>
       </Box>
-
       <Toolbar />
-    </Box>
+    </>
   );
 }
 
