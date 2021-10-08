@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -16,7 +17,6 @@ import PropTypes from 'prop-types';
 const drawerWidth = 240;
 
 function Navigation(props) {
-
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -24,7 +24,7 @@ function Navigation(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const container = 
+  const container =
     window !== undefined ? () => window().document.body : undefined;
 
   const drawer = (
@@ -33,13 +33,27 @@ function Navigation(props) {
       <Divider />
       <List>
         {[
-          'Inventory Dashboard',
-          'New Ingredient',
-          'New Menu Item',
-          'Update Inventory'
-        ].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
+          {
+            text: 'Inventory Dashboard',
+            path: '',
+          },
+          {
+            text: 'New Ingredient',
+            path: '/create/ingredient',
+          },
+          {
+            text: 'New Menu Item',
+            path: '/create/menu-item',
+          },
+          {
+            text: 'Update Inventory',
+            path: '',
+          },
+        ].map(({ text, path }, index) => (
+          <ListItem button key={index}>
+            <Link to={path}>
+              <ListItemText primary={text} />
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -47,7 +61,7 @@ function Navigation(props) {
       <List>
         {['Account Settings', 'About Bienventory', 'Logout'].map(
           (text, index) => (
-            <ListItem button key={text}>
+            <ListItem button key={index}>
               <ListItemText primary={text} />
             </ListItem>
           )
@@ -62,7 +76,7 @@ function Navigation(props) {
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` }
+          ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar>
@@ -91,14 +105,14 @@ function Navigation(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth
-            }
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
@@ -109,8 +123,8 @@ function Navigation(props) {
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth
-            }
+              width: drawerWidth,
+            },
           }}
           open
         >
@@ -123,7 +137,7 @@ function Navigation(props) {
 }
 
 Navigation.propTypes = {
-  window: PropTypes.func
+  window: PropTypes.func,
 };
 
 export default Navigation;

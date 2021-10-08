@@ -9,6 +9,7 @@ import IngredientForm from './ingredients/IngredientForm';
 import IngredientDetail from './ingredients/IngredientDetail';
 import Login from './Login';
 import Navigation from './Navigation';
+import MenuItemForm from '../menu/MenuItemForm';
 
 export default class App extends Component {
   state = {
@@ -57,6 +58,14 @@ export default class App extends Component {
 
             <Switch>
               <Route exact path="/" component={Dashboard} />
+
+              <Route
+                exact
+                path="/create/ingredient"
+                component={IngredientForm}
+              />
+
+              <Route exact path="/create/menu-item" component={MenuItemForm} />
 
               <Route
                 exact

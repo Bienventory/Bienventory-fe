@@ -28,10 +28,19 @@ const dataArray = [
     total_on_hand: 24,
     unit_type: 'count',
     restock_level: 6,
-  }
+  },
 ];
 
-const rowsArray = dataArray.map((item) => {
+// const rowsArray = dataArray.map((item) => {
+//   return {
+//     id: item.id,
+//     col1: item.item_name,
+//     col2: item.total_on_hand,
+//     col3: item.unit_type,
+//   };
+// });
+
+const rows = dataArray.map((item) => {
   return {
     id: item.id,
     col1: item.item_name,
@@ -40,24 +49,21 @@ const rowsArray = dataArray.map((item) => {
   };
 });
 
-const rows = rowsArray;
-
 const columns = [
   { field: 'id', hide: true },
-  { field: 'col1',
+  {
+    field: 'col1',
     headerName: 'Item Name',
-    renderCell: (params) => (
-      <Link to={`/ingredient/${params.value}`}>{params.value}</Link>
-    )
+    renderCell: ({ value }) => <Link to={`/ingredient/${value}`}>{value}</Link>,
   },
   { field: 'col2', headerName: 'On Hand' },
   { field: 'col3', headerName: 'Units' },
 ];
 
 export default function Dashboard() {
-  return(
+  return (
     <Box sx={{ height: 300, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns}/>
+      <DataGrid rows={rows} columns={columns} />
     </Box>
   );
 }
