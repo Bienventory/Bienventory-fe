@@ -1,5 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+// import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 
 const dataArray = [
@@ -33,10 +35,8 @@ const rowsArray = dataArray.map((item) => {
   return {
     id: item.id,
     col1: item.item_name,
-    col2: item.description,
-    col3: item.total_on_hand,
-    col4: item.unit_type,
-    col5: item.restock_level,
+    col2: item.total_on_hand,
+    col3: item.unit_type,
   };
 });
 
@@ -44,11 +44,14 @@ const rows = rowsArray;
 
 const columns = [
   { field: 'id', hide: true },
-  { field: 'col1', headerName: 'Item Name', width: 100 },
-  { field: 'col2', headerName: 'Description', width: 100 },
-  { field: 'col3', headerName: 'On Hand', width: 100 },
-  { field: 'col4', headerName: 'Units', width: 100 },
-  { field: 'col5', headerName: 'Restock', width: 100 },
+  { field: 'col1',
+    headerName: 'Item Name',
+    renderCell: (params) => (
+      <Link to={`/ingredient/${params.value}`}>{params.value}</Link>
+    )
+  },
+  { field: 'col2', headerName: 'On Hand' },
+  { field: 'col3', headerName: 'Units' },
 ];
 
 export default function Dashboard() {
