@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 
 const drawerWidth = 240;
 
-function InventoryDetail(props) {
+function Navigation(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -77,7 +77,7 @@ function InventoryDetail(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Potatoes
+            Bienventory
           </Typography>
         </Toolbar>
       </AppBar>
@@ -118,21 +118,14 @@ function InventoryDetail(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-        <Typography h2>
-            starch, staple
-        </Typography>
-        <Typography h2>
-            restock at 1/2 case
-        </Typography>
-      </Box>
+
+      <Toolbar />
     </Box>
   );
 }
 
-InventoryDetail.propTypes = {
+Navigation.propTypes = {
   window: PropTypes.func
 };
 
-export default InventoryDetail;
+export default Navigation;
