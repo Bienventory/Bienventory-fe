@@ -50,11 +50,14 @@ const rows = dataArray.map((item) => {
 });
 
 const columns = [
-  { field: 'id', hide: true },
+  {
+    field: 'id',
+    headerName: 'Links',
+    renderCell: ({ value }) => <Link to={`/inventory/${value}`}>Edit</Link>,
+  },
   {
     field: 'col1',
-    headerName: 'Item Name',
-    renderCell: ({ value }) => <Link to={`/inventory/${value}`}>{value}</Link>,
+    headerName: 'Item Name'
   },
   { field: 'col2', headerName: 'On Hand' },
   { field: 'col3', headerName: 'Units' },
