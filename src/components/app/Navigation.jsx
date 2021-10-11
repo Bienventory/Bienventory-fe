@@ -38,8 +38,8 @@ function Navigation(props) {
             path: '',
           },
           {
-            text: 'New Ingredient',
-            path: '/create/ingredient',
+            text: 'New Inventory',
+            path: '/create/inventory',
           },
           {
             text: 'New Menu Item',

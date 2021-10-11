@@ -54,7 +54,7 @@ const columns = [
   {
     field: 'col1',
     headerName: 'Item Name',
-    renderCell: ({ value }) => <Link to={`/ingredient/${value}`}>{value}</Link>,
+    renderCell: ({ value }) => <Link to={`/inventory/${value}`}>{value}</Link>,
   },
   { field: 'col2', headerName: 'On Hand' },
   { field: 'col3', headerName: 'Units' },

@@ -5,8 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Dashboard from './Dashboard';
-import IngredientForm from './ingredients/IngredientForm';
-import IngredientDetail from './ingredients/IngredientDetail';
+import InventoryForm from './inventory/InventoryForm';
+import InventoryDetail from './inventory/InventoryDetail';
 import Login from './Login';
 import Navigation from './Navigation';
 import MenuItemForm from '../menu/MenuItemForm';
@@ -42,8 +42,10 @@ export default class App extends Component {
       return (
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
-          <Typography>Get started by adding your first ingredient!</Typography>
-          <IngredientForm />
+          <Typography>
+            Get started by adding your first inventory item!
+          </Typography>
+          <InventoryForm />
         </Box>
       );
     }
@@ -61,16 +63,16 @@ export default class App extends Component {
 
               <Route
                 exact
-                path="/create/ingredient"
-                component={IngredientForm}
+                path="/create/inventory"
+                component={InventoryForm}
               />
 
               <Route exact path="/create/menu-item" component={MenuItemForm} />
 
               <Route
                 exact
-                path="/ingredient/:name"
-                component={IngredientDetail}
+                path="/inventory/:name"
+                component={InventoryDetail}
               />
             </Switch>
           </Box>

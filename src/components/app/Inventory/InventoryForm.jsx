@@ -3,19 +3,19 @@ import React from 'react';
 
 const handleChange = () => {};
 
-export default function IngredientForm() {
+export default function InventoryForm() {
 
   return (
     <form>
       <TextField 
-        id="ingredient-name"
-        label="Ingredient Name"
-        defaultValue="placeholder ingredient"
+        id="inventory-name"
+        label="inventory Name"
+        defaultValue="placeholder inventory"
         margin="normal"
         onChange={handleChange}
       />
       <TextField
-        id="ingredient-description"
+        id="inventory-description"
         label="Description"
         defaultValue="asdf"
         margin="normal"

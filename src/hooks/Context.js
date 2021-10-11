@@ -2,11 +2,11 @@ import React, { createContext, useReducer } from 'react';
 
 export const Context = createContext();
 
-//context: user authentication, ingredients array, menu array 
+//context: user authentication, inventory array, menu array 
 
 const initialState = {
   user: true,
-  ingredients: [],
+  inventory: [],
   menuItems: [],
 };
 
