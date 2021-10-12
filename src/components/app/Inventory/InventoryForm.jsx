@@ -1,11 +1,13 @@
 import { Button, MenuItem, TextField } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
+
 const handleChange = () => {};
 
-const unitTypes = ['count', 'lbs', 'gal'];
-
+//pass in click handler for either get OR put route depending on parent
 export default function InventoryForm(props) {
+  const unitTypes = ['count', 'lbs', 'gal'];
+
   const { item_name, description, total_on_hand, unit_type, restock_level } =
     props.item;
 

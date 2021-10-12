@@ -9,7 +9,7 @@ import InventoryForm from './inventory/InventoryForm';
 import InventoryDetail from './inventory/InventoryDetail';
 import Login from './Login';
 import Navigation from './Navigation';
-import MenuItemForm from '../menu/MenuItemForm';
+import MenuItemForm from './Menu/MenuItemForm';
 import { useloggedIn, useUser } from '../../hooks/LoginProvider';
 
 export default function App() {

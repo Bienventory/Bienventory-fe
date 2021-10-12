@@ -59,6 +59,10 @@ function Navigation(props) {
             path: '/create/inventory',
           },
           {
+            text: 'Menu Items',
+            path: '',
+          },
+          {
             text: 'New Menu Item',
             path: '/create/menu-item',
           },
