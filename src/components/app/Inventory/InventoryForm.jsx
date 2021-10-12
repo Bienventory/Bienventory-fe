@@ -3,28 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const handleChange = () => {};
 
-const unitTypes = [
-  {
-    value: 'count',
-    label: 'count',
-  },
-  {
-    value: 'pound',
-    label: 'lbs',
-  },
-  {
-    value: 'gallon',
-    label: 'gal',
-  },
-];
+const unitTypes = ['count', 'lbs', 'gal'];
 
-export default function InventoryForm({
-  item_name,
-  description,
-  total_on_hand,
-  unit_type,
-  restock_level,
-}) {
+export default function InventoryForm(props) {
+  const { item_name, description, total_on_hand, unit_type, restock_level } =
+    props.item;
+
   return (
     <form>
       <TextField
@@ -60,8 +44,8 @@ export default function InventoryForm({
         helperText="Please select unit type"
       >
         {unitTypes.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
+          <MenuItem key={option} value={option}>
+            {option}
           </MenuItem>
         ))}
       </TextField>
@@ -81,10 +65,22 @@ export default function InventoryForm({
   );
 }
 
+InventoryForm.defaultProps = {
+  item: {
+    item_name: 'New Inventory Item',
+    description: 'Description',
+    total_on_hand: 0,
+    unit_type: 'count',
+    restock_level: 0,
+  },
+};
+
 InventoryForm.propTypes = {
-  item_name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  total_on_hand: PropTypes.number.isRequired,
-  unit_type: PropTypes.string.isRequired,
-  restock_level: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    item_name: PropTypes.string,
+    description: PropTypes.string,
+    total_on_hand: PropTypes.number,
+    unit_type: PropTypes.string,
+    restock_level: PropTypes.number,
+  }),
 };
