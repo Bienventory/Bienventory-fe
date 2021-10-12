@@ -13,27 +13,9 @@ import MenuItemForm from '../menu/MenuItemForm';
 import { useloggedIn, useUser } from '../../hooks/LoginProvider';
 
 export default function App() {
-  // state = {
-  //   token: '',
-  //   user: '',
-  // };
   const loggedIn = useloggedIn();
   const user = useUser();
 
-  // //divide below into a button handler seperate from the setstate func
-  // handleSetState = async (profileObj) => {
-  //   await this.setState({
-  //     token: profileObj,
-  //   });
-  //   // const userObj = 
-  //   // await fetch(`theapi.urrl.com///${profileObj.googleId}`);
-  //   // const data = await userObj.json();
-  //   const data = { google_id: 2304598, notifications: false };
-
-  //   await this.setState({ user: data });
-  // };
-
-  // render() {
   if (!loggedIn) {
     return (
       <Box sx={{ display: 'flex' }}>
@@ -70,7 +52,7 @@ export default function App() {
 
             <Route exact path="/create/menu-item" component={MenuItemForm} />
 
-            <Route exact path="/inventory/:name" component={InventoryDetail} />
+            <Route exact path="/inventory/:id" component={InventoryDetail} />
           </Switch>
         </Box>
       </Box>
