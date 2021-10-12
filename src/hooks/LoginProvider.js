@@ -1,22 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useGoogleLogout } from 'react-google-login';
-
-const { signOut, loaded } = useGoogleLogout({
-  jsSrc,
-  onFailure,
-  clientId: process.env.REACT_APP_CLIENT_ID,
-  cookiePolicy,
-  loginHint,
-  hostedDomain,
-  fetchBasicProfile,
-  discoveryDocs,
-  uxMode,
-  redirectUri,
-  scope,
-  accessType,
-  onLogoutSuccess,
-});
 
 export const Context = createContext();
 
@@ -36,7 +19,6 @@ const LoginProvider = ({ children }) => {
   };
 
   const logOutUser = () => {
-    signOut;
     setUser('');
     setloggedIn(false);
   };

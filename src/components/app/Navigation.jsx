@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -13,18 +13,33 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { uselogOutUser } from '../../hooks/LoginProvider';
+import { useGoogleLogout } from 'react-google-login';
 
 const drawerWidth = 240;
 
 function Navigation(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const logOutUser = uselogOutUser();
+  const history = useHistory();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const logOutUser = uselogOutUser();
+  const onLogoutSuccess = () => {
+    logOutUser();
+    console.log('Logout success!');
+    history.push('/');
+  };
+  const onFailure = () => {
+    console.log('Logout failure!');
+  };
+  const { signOut } = useGoogleLogout({
+    clientId: process.env.REACT_APP_CLIENT_ID,
+    onLogoutSuccess,
+    onFailure,
+  });
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -70,11 +85,7 @@ function Navigation(props) {
       <Divider />
       <List>
         {['Logout'].map((text, index) => (
-          <ListItem
-            button
-            onClick={logOutUser}
-            key={index}
-          >
+          <ListItem button onClick={signOut} key={index}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
