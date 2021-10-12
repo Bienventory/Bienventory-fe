@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import Box from '@mui/material/Box';
 // import { Link } from '@mui/material';
@@ -43,7 +44,10 @@ const dataArray = [
 const rows = dataArray.map((item) => {
   return {
     id: item.id,
-    col1: item.item_name,
+    col1: {
+      id: item.id,
+      name: item.item_name,
+    },
     col2: item.total_on_hand,
     col3: item.unit_type,
   };
@@ -52,12 +56,14 @@ const rows = dataArray.map((item) => {
 const columns = [
   {
     field: 'id',
-    headerName: 'Links',
-    renderCell: ({ value }) => <Link to={`/inventory/${value}`}>Edit</Link>,
+    hide: true,
   },
   {
     field: 'col1',
-    headerName: 'Item Name'
+    headerName: 'Item Name',
+    renderCell: ({ value }) => (
+      <Link to={`/inventory/${value.id}`}>{value.name}</Link>
+    ),
   },
   { field: 'col2', headerName: 'On Hand' },
   { field: 'col3', headerName: 'Units' },

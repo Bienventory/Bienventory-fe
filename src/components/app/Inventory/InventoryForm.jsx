@@ -3,26 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const handleChange = () => {};
 
-
 const unitTypes = [
   {
-    value: 'pounds',
-    label: 'lb',
+    value: 'count',
+    label: 'count',
   },
   {
-    value: 'ounces',
-    label: 'oz',
+    value: 'pound',
+    label: 'lbs',
   },
   {
-    value: 'boxes',
-    label: 'bx',
-  },
-  {
-    value: 'unit',
-    label: '¥',
+    value: 'gallon',
+    label: 'gal',
   },
 ];
-
 
 export default function InventoryForm({
   item_name,
@@ -35,7 +29,7 @@ export default function InventoryForm({
     <form>
       <TextField
         id="inventory-name"
-        label="inventory Name"
+        label="Item Name"
         value={item_name}
         margin="normal"
         onChange={handleChange}
@@ -61,6 +55,7 @@ export default function InventoryForm({
         select
         label="Unit Type"
         value={unit_type}
+        margin="normal"
         onChange={handleChange}
         helperText="Please select unit type"
       >
@@ -87,9 +82,9 @@ export default function InventoryForm({
 }
 
 InventoryForm.propTypes = {
-  item_name: PropTypes.string.isRequired, 
-  description: PropTypes.string.isRequired, 
-  total_on_hand: PropTypes.number.isRequired, 
-  unit_type: PropTypes.string.isRequired, 
-  restock_level: PropTypes.number.isRequired, 
+  item_name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  total_on_hand: PropTypes.number.isRequired,
+  unit_type: PropTypes.string.isRequired,
+  restock_level: PropTypes.number.isRequired,
 };

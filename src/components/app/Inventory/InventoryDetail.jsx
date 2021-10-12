@@ -5,7 +5,6 @@ import MinusButton from '../../Buttons/MinusButton';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import { Link } from 'react-router-dom';
 import InventoryForm from './InventoryForm';
 // import { useParams } from 'react-router-dom';
 
@@ -49,30 +48,23 @@ export default function InventoryDetail() {
 
   return (
     <div>
-      <Link
-        to={
-          ({ pathname: `/inventory/${id}` },
-          { releasesProps: { item: inventoryDetail } })
-        }
+      <ButtonGroup
+        variant="contained"
+        aria-label="outlined primary button group"
       >
-        <ButtonGroup
-          variant="contained"
-          aria-label="outlined primary button group"
+        <Button onClick={handleOpen}>Edit</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
-          <Button onClick={handleOpen}>Edit</Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <InventoryForm />
-            </Box>
-          </Modal>
-          <Button>Delete</Button>
-        </ButtonGroup>
-      </Link>
+          <Box sx={style}>
+            <InventoryForm item={inventoryDetail} />
+          </Box>
+        </Modal>
+        <Button>Delete</Button>
+      </ButtonGroup>
 
       <Typography variant="h2">{item_name}</Typography>
       <Typography variant="h6">{description}</Typography>
