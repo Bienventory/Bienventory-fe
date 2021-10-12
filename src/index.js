@@ -6,10 +6,13 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BrowserRouter as Router } from 'react-router-dom';
+import LoginProvider from './hooks/LoginProvider';
 
 render(
   <Router>
-    <App />
+    <LoginProvider>
+      <App />
+    </LoginProvider>
   </Router>,
   document.getElementById('root')
 );

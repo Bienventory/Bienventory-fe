@@ -11,8 +11,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
 import PropTypes from 'prop-types';
+import { uselogOutUser } from '../../hooks/LoginProvider';
 
 const drawerWidth = 240;
 
@@ -23,6 +23,8 @@ function Navigation(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const logOutUser = uselogOutUser();
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -68,7 +70,11 @@ function Navigation(props) {
       <Divider />
       <List>
         {['Logout'].map((text, index) => (
-          <ListItem button key={index}>
+          <ListItem
+            button
+            onClick={logOutUser}
+            key={index}
+          >
             <ListItemText primary={text} />
           </ListItem>
         ))}
