@@ -12,8 +12,10 @@ const LoginProvider = ({ children }) => {
 
   const logInUser = async ({ googleId }) => {
     const response = await getUserById(googleId);
-    setUser(response);
-    console.log(user, 'text');
+    if (response.status === 500)
+      setUser({ googleId, notifications: true, phoneNumber: null });
+    else
+      setUser(response);
     setloggedIn(true);
   };
 

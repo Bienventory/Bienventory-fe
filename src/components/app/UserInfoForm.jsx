@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField } from '@mui/material';
+import { TextField, Button, Switch } from '@mui/material';
 
 const UserInfoForm = ({ phoneNumber, onNumberChange }) => {
   return (
     <form>
+      <Switch checked={checked}
+ />
       <TextField
         id="phoneNumber"
         label="Phone Number"
@@ -13,6 +15,9 @@ const UserInfoForm = ({ phoneNumber, onNumberChange }) => {
         margin="normal"
         onChange={onNumberChange}
       />
+      <Button style={{ display: 'block' }} variant="contained">
+        Submit
+      </Button>
     </form>
   );
 };
