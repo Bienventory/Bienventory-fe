@@ -30,7 +30,7 @@ export default function App() {
     );
   }
 
-  if (loggedIn && !user) {
+  if (loggedIn && !(user.phoneNumber)) {
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
