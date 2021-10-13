@@ -30,7 +30,8 @@ export default function App() {
     );
   }
 
-  if (loggedIn && !user) {
+  console.log(user);
+  if (loggedIn && user.status === 500) {
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />

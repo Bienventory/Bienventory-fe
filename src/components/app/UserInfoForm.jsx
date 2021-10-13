@@ -23,3 +23,8 @@ UserInfoForm.propTypes = {
   phoneNumber: PropTypes.string.isRequired,
   onNumberChange: PropTypes.func.isRequired,
 };
+
+UserInfoForm.defaultProps = {
+  phoneNumber: '',
+  onNumberChange: () => {}
+};

@@ -11,9 +11,9 @@ const LoginProvider = ({ children }) => {
   const [loggedIn, setloggedIn] = useState(false);
 
   const logInUser = async ({ googleId }) => {
-    console.log(googleId);
-    const response = getUserById(googleId);
+    const response = await getUserById(googleId);
     setUser(response);
+    console.log(user, 'text');
     setloggedIn(true);
   };
 
