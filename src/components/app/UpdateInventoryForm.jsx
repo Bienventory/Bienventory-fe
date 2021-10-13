@@ -1,7 +1,33 @@
-import { Button, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import React from 'react';
+import Papa from 'papaparse';
+import { addSalesData } from '../../services/fetchUtils';
 
-const handleChange = () => {};
+
+
+const handleChange =  (event) => {
+  event.preventDefault();
+  
+  const files = event.target.files;
+  if (files) {
+    Papa.parse(files[0], {
+      delimiter: '',
+      header: true,
+      complete(results) {
+        console.log('Finished:', results.data);
+
+        addSalesData([
+          results.data, 
+          phoneNumber
+        ]) ;
+
+      },
+    });
+  }
+};
+
+
+
 
 export default function UpdateInventoryForm() {
   return (
@@ -9,15 +35,13 @@ export default function UpdateInventoryForm() {
       <TextField
         id="sales-data"
         label="Sales Data"
-        //change to controlled input variable ingredient_name
-        value="CSV file"
+        type="file"
+        accept=".csv"
+        value=""
         margin="normal"
         onChange={handleChange}
       />
 
-      <Button style={{ display: 'block' }} variant="contained">
-        Submit
-      </Button>
     </form>
   );
 }
