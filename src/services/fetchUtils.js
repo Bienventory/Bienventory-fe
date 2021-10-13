@@ -1,10 +1,14 @@
-export const createUser = async (userData) => {
+export const createUser = async (userData, phoneNumber) => {
   let response = await fetch('https://bienventory.herokuapp.com/api/v1/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userData),
+    body: JSON.stringify({
+      google_id: userData.googleId,
+      notifications: userData.notifications,
+      phone_number: phoneNumber,
+    }),
   });
   response = await response.json();
   return response;

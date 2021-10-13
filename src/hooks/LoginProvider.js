@@ -14,8 +14,7 @@ const LoginProvider = ({ children }) => {
     const response = await getUserById(googleId);
     if (response.status === 500)
       setUser({ googleId, notifications: true, phoneNumber: null });
-    else
-      setUser(response);
+    else setUser(response);
     setloggedIn(true);
   };
 
@@ -25,7 +24,9 @@ const LoginProvider = ({ children }) => {
   };
 
   return (
-    <Context.Provider value={{ user, loggedIn, logInUser, logOutUser }}>
+    <Context.Provider
+      value={{ user, loggedIn, logInUser, logOutUser, setUser }}
+    >
       {children}
     </Context.Provider>
   );
@@ -49,6 +50,11 @@ export const useloggedIn = () => {
 export const useUser = () => {
   const { user } = useContext(Context);
   return user;
+};
+
+export const usesetUser = () => {
+  const { setUser } = useContext(Context);
+  return setUser;
 };
 
 LoginProvider.propTypes = {
