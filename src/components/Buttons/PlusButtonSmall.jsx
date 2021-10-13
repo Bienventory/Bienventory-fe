@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
-import { red } from '@mui/material/colors';
-import Icon from '@mui/material/Icon';
+import { green } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
+import Icon from '@mui/material/Icon';
+import PropTypes from 'prop-types';
 
-export default function MinusButton() {
+export default function PlusButtonSmall({ onClick }) {
   React.useEffect(() => {
     const node = loadCSS(
       'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
@@ -18,12 +19,17 @@ export default function MinusButton() {
   }, []);
 
   return (
-    <IconButton>
+    <IconButton onClick={onClick}>
       <Icon
+        variant="contained"
         baseClassName="fas"
-        className="fa-minus-circle"
-        sx={{ color: red[500], fontSize: 66 }}
+        className="fa-plus-circle"
+        sx={{ color: green[300], fontSize: 42 }}
       />
     </IconButton>
   );
 }
+
+PlusButtonSmall.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

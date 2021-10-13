@@ -2,6 +2,7 @@ import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
+import IconButton from '@mui/material/IconButton';
 
 export default function PlusButton() {
   React.useEffect(() => {
@@ -17,10 +18,12 @@ export default function PlusButton() {
   }, []);
 
   return (
-    <Icon
-      baseClassName="fas"
-      className="fa-plus-circle"
-      sx={{ color: green[500], fontSize: 66 }}
-    />
+    <IconButton>
+      <Icon
+        baseClassName="fas"
+        className="fa-plus-circle"
+        sx={{ color: green[500], fontSize: 66 }}
+      />
+    </IconButton>
   );
 }
