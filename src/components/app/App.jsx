@@ -10,7 +10,12 @@ import InventoryDetail from './inventory/InventoryDetail';
 import Login from './Login';
 import Navigation from './Navigation';
 import MenuItemForm from './Menu/MenuItemForm';
+import MenuItemList from './Menu/MenuItemList';
 import { useloggedIn, useUser } from '../../hooks/LoginProvider';
+import UserInfoForm from './UserInfoForm';
+import UpdateInventoryForm from './UpdateInventoryForm';
+import AccountSettings from './AccountSettings';
+import About from './About';
 
 export default function App() {
   const loggedIn = useloggedIn();
@@ -29,10 +34,8 @@ export default function App() {
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Typography>
-          Get started by adding your first inventory item!
-        </Typography>
-        <InventoryForm />
+        <Typography>Get started by entering your phone number!</Typography>
+        <UserInfoForm />
       </Box>
     );
   }
@@ -48,9 +51,21 @@ export default function App() {
           <Switch>
             <Route exact path="/" component={Dashboard} />
 
+            <Route exact path="/about" component={About} />
+
+            <Route exact path="/account" component={AccountSettings} />
+
             <Route exact path="/create/inventory" component={InventoryForm} />
 
             <Route exact path="/create/menu-item" component={MenuItemForm} />
+
+            <Route exact path="/menu-items" component={MenuItemList} />
+
+            <Route
+              exact
+              path="/update/inventory"
+              component={UpdateInventoryForm}
+            />
 
             <Route exact path="/inventory/:id" component={InventoryDetail} />
           </Switch>
