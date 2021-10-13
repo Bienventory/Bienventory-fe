@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getUserById } from '../services/fetchUtils';
 
 export const Context = createContext();
 
@@ -9,12 +10,10 @@ const LoginProvider = ({ children }) => {
   const [user, setUser] = useState('');
   const [loggedIn, setloggedIn] = useState(false);
 
-  const logInUser = async (googleId) => {
-    // const response = await fetch(`theapi.urrl.com///${googleId}`);
-    // const userObj = await response.json();
-    const userObj = { google_id: googleId, notifications: false };
-
-    setUser(userObj);
+  const logInUser = async ({ googleId }) => {
+    console.log(googleId);
+    const response = getUserById(googleId);
+    setUser(response);
     setloggedIn(true);
   };
 
