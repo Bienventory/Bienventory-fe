@@ -19,7 +19,6 @@ export default function UpdateInventoryForm() {
         dynamicTyping: true,
         header: true,
         complete(results) {
-          console.log('Finished:', results.data);
           setSalesData(results.data);
         },
       });
