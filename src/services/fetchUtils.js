@@ -39,7 +39,7 @@ export const updateUser = async (updatedData) => {
   return response;
 };
 
-export async function addSalesData(salesData, phoneNumber) {
+export async function addSalesData(salesData, { phone_number, google_id }) {
   console.log(salesData, 'SALESDATA');
   let response = await fetch('https://bienventory.herokuapp.com/api/v1/sales', {
     method: 'POST',
@@ -48,7 +48,7 @@ export async function addSalesData(salesData, phoneNumber) {
     },
     body: JSON.stringify(),
   });
-  response = await response.json([{ sales: salesData }, phoneNumber]);
+  response = await response.json([{ user_id: google_id, sales: salesData }, phone_number]);
   console.log(response);
   return response;
 }
