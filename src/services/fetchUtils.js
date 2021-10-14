@@ -105,3 +105,15 @@ export const deleteInventory = async (id) => {
   response = await response.json();
   return response;
 };
+
+export const createMenuItem = async (newItem) => {
+  let response = await fetch('https://bienventory.herokuapp.com/api/v1/menus', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newItem),
+  });
+  response = await response.json();
+  return response;
+};

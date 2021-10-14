@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { Modal } from '@mui/material';
 import PlusButtonSmall from '../../Buttons/PlusButtonSmall';
 import IngredientForm from './IngredientForm';
+import { createMenuItem } from '../../../services/fetchUtils';
 
 const style = {
   position: 'absolute',
@@ -17,34 +18,40 @@ const style = {
   p: 4,
 };
 
-const handleChange = () => {};
-
 export default function MenuItemForm() {
-  const [open, setOpen] = React.useState(false);
+  const [menuItemName, setMenuItemName] = useState('');
+  const [ingredientsArray, setIngredientsArray] = useState([]);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleMenuItemChange = ({ target }) => {
+    setMenuItemName(target.value);
+  };
+
+  const handleIngredientArrayChange = (ingredientObj) => {
+    const updatedArray = [...ingredientsArray, ingredientObj];
+    setIngredientsArray(updatedArray);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const newItem = {
+      meal_name: menuItemName,
+      ingredients: ingredientsArray,
+    };
+    await createMenuItem(newItem);
+  };
 
   return (
     <form>
       <TextField
         id="menu-item-name"
         label="Menu Item Name"
-        //change value to controlled input
-        value="menu item"
+        value={menuItemName}
         margin="normal"
-        onChange={handleChange}
+        onChange={handleMenuItemChange}
       />
-
-      {/* <TextField
-        type="number"
-        id="qty-on-hand"
-        label="Quantity On Hand"
-        value={total_on_hand}
-        margin="normal"
-        onChange={handleChange}
-      /> */}
-
-      {/* render map of array of added items from state */}
       <Box sx={{ display: 'flex', justifyContent: 'right' }}>
         <PlusButtonSmall onClick={handleOpen} />
         <Modal
@@ -54,15 +61,22 @@ export default function MenuItemForm() {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <IngredientForm />
+            <IngredientForm
+              handleIngredientArrayChange={handleIngredientArrayChange}
+              value={ingredientsArray}
+            />
           </Box>
         </Modal>
       </Box>
-      <Button style={{ display: 'block' }} variant="contained">
+      <Button
+        onClick={handleSubmit}
+        style={{ display: 'block' }}
+        variant="contained"
+      >
         Submit
       </Button>
     </form>
   );
 }
 
-MenuItemForm.propTypes = {};
+
