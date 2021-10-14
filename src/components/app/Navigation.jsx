@@ -70,6 +70,10 @@ function Navigation(props) {
             text: 'Update Inventory',
             path: '/update/inventory',
           },
+          {
+            text: 'About Bienventory',
+            path: '/about',
+          },
         ].map(({ text, path }, index) => (
           <ListItem button key={index}>
             <Link to={path}>
