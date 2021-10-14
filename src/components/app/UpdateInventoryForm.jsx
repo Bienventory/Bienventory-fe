@@ -20,7 +20,7 @@ export default function UpdateInventoryForm() {
         header: true,
         complete(results) {
           console.log('Finished:', results.data);
-          setSalesData(results.data, user.phone_number);
+          setSalesData(results.data, user);
         },
       });
     }
