@@ -7,7 +7,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import LoginProvider from './hooks/LoginProvider';
-
+import './index.css';
 render(
   <Router>
     <LoginProvider>
