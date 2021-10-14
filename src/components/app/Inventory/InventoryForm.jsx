@@ -20,12 +20,12 @@ export default function InventoryForm(props) {
   const [itemPar, setPar] = useState(par);
   const history = useHistory();
   const user = useUser();
-  
+
   const handleChange = ({ target }) => {
     if (target.id === 'inventory-name') setItemName(target.value);
     if (target.id === 'description') setDescription(target.value);
     if (target.id === 'qty-on-hand') setTotalOnHand(target.value);
-    if (target.id === 'unit-type') setUnitType(target.value);
+    if (target.name === 'unit-type') setUnitType(target.value);
     if (target.id === 'par') setPar(target.value);
   };
 
@@ -73,12 +73,12 @@ export default function InventoryForm(props) {
 
       <TextField
         id="unit-type"
-        select
         label="Unit Type"
-        value={unitType}
+        name="unit-type"
+        select
         margin="normal"
+        value={unitType}
         onChange={handleChange}
-        helperText="Please select unit type"
       >
         {unitTypes.map((option) => (
           <MenuItem key={option} value={option}>
