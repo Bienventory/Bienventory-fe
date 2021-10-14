@@ -36,10 +36,7 @@ export default function Dashboard() {
   const rows = userData.map((item) => {
     return {
       id: item.id,
-      col1: {
-        id: item.id,
-        name: item.item_name,
-      },
+      col1: item.item_name,
       col2: item.total_on_hand,
       col3: item.unit_type,
     };
@@ -53,8 +50,8 @@ export default function Dashboard() {
     {
       field: 'col1',
       headerName: 'Item Name',
-      renderCell: ({ value }) => (
-        <Link to={`/inventory/${value.id}`}>{value.name}</Link>
+      renderCell: (params) => (
+        <Link to={`/inventory/${params.row.id}`}>{params.value}</Link>
       ),
     },
     { field: 'col2', headerName: 'On Hand' },
@@ -62,8 +59,8 @@ export default function Dashboard() {
   ];
 
   return (
-    <Box sx={{ height: 300, width: '100%' }}>
-      <DataGrid rows={rows} columns={columns} />
+    <Box sx={{ height: '90%', width: '100%' }}>
+      <DataGrid sx={{ height: '100%', width: '100%' }} rows={rows} columns={columns} />
     </Box>
   );
 }

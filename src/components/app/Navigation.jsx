@@ -70,6 +70,21 @@ function Navigation(props) {
             text: 'Update Inventory',
             path: '/update/inventory',
           },
+        ].map(({ text, path }, index) => (
+          <ListItem button key={index}>
+            <Link to={path}>
+              <ListItemText primary={text} />
+            </Link>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {[
+          // {
+          //   text: 'Account Settings',
+          //   path: '/account',
+          // },
           {
             text: 'About Bienventory',
             path: '/about',
@@ -82,25 +97,6 @@ function Navigation(props) {
           </ListItem>
         ))}
       </List>
-      {/* <Divider />
-      <List>
-        {[
-          {
-            text: 'Account Settings',
-            path: '/account',
-          },
-          {
-            text: 'About Bienventory',
-            path: '/about',
-          },
-        ].map(({ text, path }, index) => (
-          <ListItem button key={index}>
-            <Link to={path}>
-              <ListItemText primary={text} />
-            </Link>
-          </ListItem>
-        ))}
-      </List> */}
       <Divider />
       <List>
         {['Logout'].map((text, index) => (
