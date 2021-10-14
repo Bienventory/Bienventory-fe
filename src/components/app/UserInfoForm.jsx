@@ -1,12 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { TextField, Button, Switch } from '@mui/material';
+import React, { useState } from 'react';
+import { TextField, Button } from '@mui/material';
+import { useUser } from '../../hooks/LoginProvider';
+import { createUser } from '../../services/fetchUtils';
+import { useHistory } from 'react-router';
 
-const UserInfoForm = ({ phoneNumber, onNumberChange }) => {
+const UserInfoForm = () => {
+  const user = useUser();
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const history = useHistory();
+
+  const onNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await createUser(user, phoneNumber);
+    history.push('/');
+  };
+
   return (
     <form>
-      <Switch checked={checked}
- />
       <TextField
         id="phoneNumber"
         label="Phone Number"
@@ -15,7 +29,11 @@ const UserInfoForm = ({ phoneNumber, onNumberChange }) => {
         margin="normal"
         onChange={onNumberChange}
       />
-      <Button style={{ display: 'block' }} variant="contained">
+      <Button
+        onClick={handleSubmit}
+        style={{ display: 'block' }}
+        variant="contained"
+      >
         Submit
       </Button>
     </form>
@@ -23,13 +41,3 @@ const UserInfoForm = ({ phoneNumber, onNumberChange }) => {
 };
 
 export default UserInfoForm;
-
-UserInfoForm.propTypes = {
-  phoneNumber: PropTypes.string.isRequired,
-  onNumberChange: PropTypes.func.isRequired,
-};
-
-UserInfoForm.defaultProps = {
-  phoneNumber: '',
-  onNumberChange: () => {}
-};

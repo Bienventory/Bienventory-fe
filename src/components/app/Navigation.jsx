@@ -78,7 +78,7 @@ function Navigation(props) {
           </ListItem>
         ))}
       </List>
-      <Divider />
+      {/* <Divider />
       <List>
         {[
           {
@@ -96,7 +96,7 @@ function Navigation(props) {
             </Link>
           </ListItem>
         ))}
-      </List>
+      </List> */}
       <Divider />
       <List>
         {['Logout'].map((text, index) => (
