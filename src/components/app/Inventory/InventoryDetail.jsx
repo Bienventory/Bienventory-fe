@@ -1,12 +1,17 @@
 import { Modal, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PlusButton from '../../Buttons/PlusButton';
 import MinusButton from '../../Buttons/MinusButton';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import InventoryForm from './InventoryForm';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import {
+  deleteInventory,
+  getInventoryById,
+} from '../../../services/fetchUtils';
+import { useHistory } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -21,30 +26,31 @@ const style = {
 };
 
 export default function InventoryDetail() {
-  // const { id } = useParams();
-  // const inventoryDetail = getById(id);
+  const [inventoryData, setInventoryData] = useState({});
+  const { id } = useParams();
 
-  const inventoryDetail = {
-    id: 1,
-    item_name: 'potatoes',
-    description: 'starch, staple',
-    total_on_hand: 10,
-    unit_type: 'lbs',
-    restock_level: 2,
-  };
+  useEffect(() => {
+    const loadData = async () => {
+      const response = await getInventoryById(id);
+      setInventoryData(response);
+    };
+    loadData();
+  }, [inventoryData]);
 
-  const {
-    id,
-    item_name,
-    description,
-    total_on_hand,
-    unit_type,
-    restock_level,
-  } = inventoryDetail;
+  const { item_name, description, total_on_hand, unit_type, par } =
+    inventoryData;
 
   const [open, setOpen] = React.useState(false);
+  const [openDelete, setOpenDelete] = React.useState(false);
+  const history = useHistory();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleOpenDelete = () => setOpenDelete(true);
+  const handleCloseDelete = () => setOpenDelete(false);
+  const handleDelete = async () => {
+    await deleteInventory(id);
+    history.push('/');
+  };
 
   return (
     <div>
@@ -56,28 +62,40 @@ export default function InventoryDetail() {
         <Modal
           open={open}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
+          aria-labelledby="modal-modal-edit"
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <InventoryForm item={inventoryDetail} />
+            <InventoryForm item={inventoryData} />
           </Box>
         </Modal>
-        <Button>Delete</Button>
+        <Button onClick={handleOpenDelete}>Delete</Button>
+        <Modal
+          open={openDelete}
+          onClose={handleCloseDelete}
+          aria-labelledby="modal-modal-delete"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            Are you sure you want to permanently delete this item?
+            <Button onClick={handleDelete}>Yes</Button>
+            <Button onClick={handleCloseDelete}>No</Button>
+          </Box>
+        </Modal>
       </ButtonGroup>
 
       <Typography variant="h2">{item_name}</Typography>
       <Typography variant="h6">{description}</Typography>
       <Typography variant="h6">
-        Restock at {restock_level} {unit_type}
+        Restock at {par} {unit_type}
       </Typography>
       <Typography variant="h2" align="center">
         {total_on_hand} {unit_type}
       </Typography>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+      {/* <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
         <MinusButton />
         <PlusButton />
-      </Box>
+      </Box> */}
     </div>
   );
 }

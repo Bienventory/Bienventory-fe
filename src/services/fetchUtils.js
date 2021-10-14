@@ -50,3 +50,58 @@ export async function addSalesData(salesData, phoneNumber) {
   response = await response.json();
   return response;
 }
+
+export const getInventoryById = async (id) => {
+  //loginprovider.js
+  let response = await fetch(
+    `https://bienventory.herokuapp.com/api/v1/inventory/${id}`
+  );
+  response = await response.json();
+  return response;
+};
+
+export const updateInventory = async (id, updatedData) => {
+  //account settings page
+  let response = await fetch(
+    `https://bienventory.herokuapp.com/api/v1/inventory/${id}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedData),
+    }
+  );
+  response = await response.json();
+  return response;
+};
+
+export const createInventoryItem = async (inventoryItem) => {
+  let response = await fetch(
+    'https://bienventory.herokuapp.com/api/v1/inventory',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inventoryItem),
+    }
+  );
+  response = await response.json();
+  return response;
+};
+
+
+export const deleteInventory = async (id) => {
+  let response = await fetch(
+    `https://bienventory.herokuapp.com/api/v1/inventory/${id}`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  response = await response.json();
+  return response;
+};

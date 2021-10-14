@@ -1,29 +1,64 @@
 import { Button, MenuItem, TextField } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-const handleChange = () => {};
+import {
+  createInventoryItem,
+  updateInventory,
+} from '../../../services/fetchUtils';
+import { useHistory } from 'react-router-dom';
+import { useUser } from '../../../hooks/LoginProvider';
+// const handleChange = () => {};
 
 //pass in click handler for either get OR put route depending on parent
 export default function InventoryForm(props) {
-  const unitTypes = ['count', 'lbs', 'gal'];
-
-  const { item_name, description, total_on_hand, unit_type, restock_level } =
+  const { id, item_name, description, total_on_hand, unit_type, par } =
     props.item;
+  const [itemName, setItemName] = useState(item_name);
+  const [itemDescription, setDescription] = useState(description);
+  const [totalOnHand, setTotalOnHand] = useState(total_on_hand);
+  const [unitType, setUnitType] = useState(unit_type);
+  const [itemPar, setPar] = useState(par);
+  const history = useHistory();
+  const user = useUser();
+  
+  const handleChange = ({ target }) => {
+    if (target.id === 'inventory-name') setItemName(target.value);
+    if (target.id === 'description') setDescription(target.value);
+    if (target.id === 'qty-on-hand') setTotalOnHand(target.value);
+    if (target.id === 'unit-type') setUnitType(target.value);
+    if (target.id === 'par') setPar(target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const updatedInventory = {
+      user_id: user.google_id,
+      item_name: itemName,
+      description: itemDescription,
+      total_on_hand: totalOnHand,
+      unit_type: unitType,
+      par: itemPar,
+    };
+    if (id === 0) await createInventoryItem(updatedInventory);
+    else await updateInventory(id, updatedInventory);
+    history.push('/');
+  };
+
+  const unitTypes = ['count', 'lbs', 'gal'];
 
   return (
     <form>
       <TextField
         id="inventory-name"
         label="Item Name"
-        value={item_name}
+        value={itemName}
         margin="normal"
         onChange={handleChange}
       />
       <TextField
-        id="inventory-description"
+        id="description"
         label="Description"
-        value={description}
+        value={itemDescription}
         margin="normal"
         onChange={handleChange}
       />
@@ -31,7 +66,7 @@ export default function InventoryForm(props) {
         type="number"
         id="qty-on-hand"
         label="Quantity On Hand"
-        value={total_on_hand}
+        value={totalOnHand}
         margin="normal"
         onChange={handleChange}
       />
@@ -40,7 +75,7 @@ export default function InventoryForm(props) {
         id="unit-type"
         select
         label="Unit Type"
-        value={unit_type}
+        value={unitType}
         margin="normal"
         onChange={handleChange}
         helperText="Please select unit type"
@@ -53,14 +88,18 @@ export default function InventoryForm(props) {
       </TextField>
 
       <TextField
-        id="restock-qty"
+        id="par"
         label="Restock Level"
-        value={restock_level}
+        value={itemPar}
         margin="normal"
         onChange={handleChange}
       />
 
-      <Button style={{ display: 'block' }} variant="contained">
+      <Button
+        onClick={handleSubmit}
+        style={{ display: 'block' }}
+        variant="contained"
+      >
         Submit
       </Button>
     </form>
@@ -69,20 +108,22 @@ export default function InventoryForm(props) {
 
 InventoryForm.defaultProps = {
   item: {
+    id: 0,
     item_name: 'New Inventory Item',
     description: 'Description',
     total_on_hand: 0,
     unit_type: 'count',
-    restock_level: 0,
+    par: 0,
   },
 };
 
 InventoryForm.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.number,
     item_name: PropTypes.string,
     description: PropTypes.string,
     total_on_hand: PropTypes.number,
     unit_type: PropTypes.string,
-    restock_level: PropTypes.number,
+    par: PropTypes.number,
   }),
 };
