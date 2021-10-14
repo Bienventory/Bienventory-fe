@@ -20,7 +20,7 @@ export default function UpdateInventoryForm() {
         header: true,
         complete(results) {
           console.log('Finished:', results.data);
-          setSalesData(results.data, user);
+          setSalesData(results.data);
         },
       });
     }
@@ -28,7 +28,7 @@ export default function UpdateInventoryForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await addSalesData(salesData);
+    await addSalesData(salesData, user);
     history.push('/');
   };
 

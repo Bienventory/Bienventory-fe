@@ -30,7 +30,7 @@ export default function App() {
     );
   }
 
-  if (loggedIn && !(user.phone_number)) {
+  if (loggedIn && !user.phone_number) {
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -42,10 +42,13 @@ export default function App() {
 
   if (loggedIn && user) {
     return (
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ height: '100%', width: '100%', display: 'flex' }}>
         <CssBaseline />
         <Navigation />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box
+          component="main"
+          sx={{ height: '100%', width: '100%', flexGrow: 1, p: 3 }}
+        >
           <Toolbar />
 
           <Switch>
