@@ -1,0 +1,74 @@
+[
+    {
+    "id": "3",
+    "user_id": "101962906340201607193",
+    "item_name": "bacon",
+    "description": "hillshire farms thick cut",
+    "total_on_hand": "7.5",
+    "par": 2,
+    "unit_type": "lbs"
+    },
+    {
+    "id": "4",
+    "user_id": "101962906340201607193",
+    "item_name": "butter",
+    "description": "unsalted butter",
+    "total_on_hand": "24.099999999999998",
+    "par": 5,
+    "unit_type": "lbs"
+    },
+    {
+    "id": "8",
+    "user_id": "101962906340201607193",
+    "item_name": "avocado",
+    "description": "haas",
+    "total_on_hand": "6",
+    "par": 2,
+    "unit_type": "lbs"
+    },
+    {
+    "id": "2",
+    "user_id": "101962906340201607193",
+    "item_name": "eggs",
+    "description": "grade A large eggs",
+    "total_on_hand": "27",
+    "par": 24,
+    "unit_type": "count"
+    },
+    {
+    "id": "5",
+    "user_id": "101962906340201607193",
+    "item_name": "cheddar",
+    "description": "sharp cheddar",
+    "total_on_hand": "10",
+    "par": 1,
+    "unit_type": "lbs"
+    },
+    {
+    "id": "6",
+    "user_id": "101962906340201607193",
+    "item_name": "buttermilk",
+    "description": "whole buttermilk",
+    "total_on_hand": "10",
+    "par": 1,
+    "unit_type": "gal"
+    },
+    {
+    "id": "1",
+    "user_id": "101962906340201607193",
+    "item_name": "flour",
+    "description": "all purpose flour",
+    "total_on_hand": "47",
+    "par": 10,
+    "unit_type": "lbs"
+    },
+    {
+    "id": "7",
+    "user_id": "101962906340201607193",
+    "item_name": "potatoes",
+    "description": "russet potatoes",
+    "total_on_hand": "30",
+    "par": 10,
+    "unit_type": "lbs"
+    }
+    ]
