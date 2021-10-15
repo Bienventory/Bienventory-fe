@@ -12,6 +12,7 @@ export default function MenuList() {
       );
       const json = await menu.json();
       setMenuList(json);
+      console.log(json);
     };
     loadMenuList();
   }, []);
