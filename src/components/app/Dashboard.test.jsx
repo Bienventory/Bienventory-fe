@@ -16,7 +16,7 @@ const server = setupServer(
   )
 );
 
-describe('AristSearch Container', () => {
+describe('Dashboard Component', () => {
   beforeAll(() => server.listen());
   afterAll(() => server.close());
 
