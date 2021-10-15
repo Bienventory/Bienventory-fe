@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 
-export default function IngredientForm({ handleIngredientArrayChange }) {
+export default function IngredientForm({ handleIngredientArrayChange, handleClose }) {
   const [ingredient, setIngredient] = useState('');
   const [quantity, setQuantity] = useState(0);
   const handleIngredientChange = ({ target }) => {
@@ -15,6 +15,7 @@ export default function IngredientForm({ handleIngredientArrayChange }) {
     event.preventDefault();
     const ingredientObj = { name: ingredient, quantity };
     handleIngredientArrayChange(ingredientObj);
+    handleClose();
   };
   return (
     <form>
@@ -48,5 +49,6 @@ export default function IngredientForm({ handleIngredientArrayChange }) {
 }
 
 IngredientForm.propTypes = {
-  handleIngredientArrayChange: PropTypes.func.isRequired
+  handleIngredientArrayChange: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired
 };

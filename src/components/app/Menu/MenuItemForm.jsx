@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { Modal } from '@mui/material';
 import PlusButtonSmall from '../../Buttons/PlusButtonSmall';
 import IngredientForm from './IngredientForm';
 import { createMenuItem } from '../../../services/fetchUtils';
+import { useHistory } from 'react-router-dom';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+
 
 const style = {
   position: 'absolute',
@@ -24,10 +29,15 @@ export default function MenuItemForm() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const history = useHistory();
 
   const handleMenuItemChange = ({ target }) => {
     setMenuItemName(target.value);
   };
+
+  useEffect(() => {
+
+  }, [ingredientsArray]);
 
   const handleIngredientArrayChange = (ingredientObj) => {
     const updatedArray = [...ingredientsArray, ingredientObj];
@@ -41,6 +51,7 @@ export default function MenuItemForm() {
       ingredients: ingredientsArray,
     };
     await createMenuItem(newItem);
+    history.push('/menu-items');
   };
 
   return (
@@ -52,16 +63,23 @@ export default function MenuItemForm() {
         margin="normal"
         onChange={handleMenuItemChange}
       />
+      <List>
+        {ingredientsArray.length ? ingredientsArray.map((ing, index) => (
+          <ListItem button key={index}>
+            <ListItemText primary={ing.name} />
+          </ListItem>
+        )) : <div>Add an ingredient!</div>}
+      </List> 
       <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-        <PlusButtonSmall onClick={handleOpen} />
+        <PlusButtonSmall onClick={handleOpen}/>
         <Modal
           open={open}
-          onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
             <IngredientForm
+              handleClose={handleClose}
               handleIngredientArrayChange={handleIngredientArrayChange}
               value={ingredientsArray}
             />
