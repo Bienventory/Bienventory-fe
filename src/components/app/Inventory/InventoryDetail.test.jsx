@@ -28,11 +28,10 @@ describe('Inventory Detail component', () => {
         </MemoryRouter>
       </LoginProvider>
     );
-    
+
     const h2 = await screen.findByText('butter');
     screen.getByText('Edit');
     screen.getByText('Delete');
-    
 
     expect(h2).not.toBeEmptyDOMElement;
     expect(container).toMatchSnapshot();

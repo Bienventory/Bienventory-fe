@@ -60,7 +60,11 @@ export default function Dashboard() {
 
   return (
     <Box sx={{ height: '90%', width: '100%' }}>
-      <DataGrid sx={{ height: '100%', width: '100%' }} rows={rows} columns={columns} />
+      <DataGrid
+        sx={{ height: '100%', width: '100%' }}
+        rows={rows}
+        columns={columns}
+      />
     </Box>
   );
 }

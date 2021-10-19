@@ -15,7 +15,6 @@ export const createUser = async (userData, phoneNumber) => {
 };
 
 export const getUserById = async (id) => {
-  //loginprovider.js
   let response = await fetch(
     `https://bienventory.herokuapp.com/api/v1/users/${id}`
   );
@@ -24,7 +23,6 @@ export const getUserById = async (id) => {
 };
 
 export const updateUser = async (updatedData) => {
-  //account settings page
   let response = await fetch(
     `https://bienventory.herokuapp.com/api/v1/users/${id}`,
     {
@@ -55,7 +53,6 @@ export async function addSalesData(salesData, { phone_number, google_id }) {
 }
 
 export const getInventoryById = async (id) => {
-  //loginprovider.js
   let response = await fetch(
     `https://bienventory.herokuapp.com/api/v1/inventory/${id}`
   );
@@ -64,7 +61,6 @@ export const getInventoryById = async (id) => {
 };
 
 export const updateInventory = async (id, updatedData) => {
-  //account settings page
   let response = await fetch(
     `https://bienventory.herokuapp.com/api/v1/inventory/${id}`,
     {

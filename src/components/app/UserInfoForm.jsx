@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useUser } from '../../hooks/LoginProvider';
 import { createUser } from '../../services/fetchUtils';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const UserInfoForm = () => {
   const user = useUser();
@@ -16,7 +16,7 @@ const UserInfoForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createUser(user, phoneNumber);
-    history.push('/');
+    history.go(0);
   };
 
   return (
