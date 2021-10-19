@@ -6,13 +6,7 @@ const responseGoogle = (response) => {
   console.log(response);
 };
 
-// const handleClick = (token) => {
-//   console.log(token);
-//   uselogInUser(token.googleId);
-// };
-
 export default function Login() {
-
   const logInUser = uselogInUser();
 
   return (

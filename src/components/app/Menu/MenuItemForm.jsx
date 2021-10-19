@@ -10,7 +10,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -35,9 +34,7 @@ export default function MenuItemForm() {
     setMenuItemName(target.value);
   };
 
-  useEffect(() => {
-
-  }, [ingredientsArray]);
+  useEffect(() => {}, [ingredientsArray]);
 
   const handleIngredientArrayChange = (ingredientObj) => {
     const updatedArray = [...ingredientsArray, ingredientObj];
@@ -64,14 +61,18 @@ export default function MenuItemForm() {
         onChange={handleMenuItemChange}
       />
       <List>
-        {ingredientsArray.length ? ingredientsArray.map((ing, index) => (
-          <ListItem button key={index}>
-            <ListItemText primary={ing.name} />
-          </ListItem>
-        )) : <div>Add an ingredient!</div>}
-      </List> 
+        {ingredientsArray.length ? (
+          ingredientsArray.map((ing, index) => (
+            <ListItem button key={index}>
+              <ListItemText primary={ing.name} />
+            </ListItem>
+          ))
+        ) : (
+          <div>Add an ingredient!</div>
+        )}
+      </List>
       <Box sx={{ display: 'flex', justifyContent: 'right' }}>
-        <PlusButtonSmall onClick={handleOpen}/>
+        <PlusButtonSmall onClick={handleOpen} />
         <Modal
           open={open}
           aria-labelledby="modal-modal-title"
@@ -96,5 +97,3 @@ export default function MenuItemForm() {
     </form>
   );
 }
-
-
