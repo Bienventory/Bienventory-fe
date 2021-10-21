@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { loadCSS } from 'fg-loadcss';
 import { green } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
@@ -6,7 +6,7 @@ import Icon from '@mui/material/Icon';
 import PropTypes from 'prop-types';
 
 export default function PlusButtonSmall({ onClick }) {
-  React.useEffect(() => {
+  useEffect(() => {
     const node = loadCSS(
       'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
       // Inject before JSS

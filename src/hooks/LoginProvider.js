@@ -32,6 +32,7 @@ const LoginProvider = ({ children }) => {
   );
 };
 
+// These three hooks below could be combined into a `useSession` (or some other name) hook
 export const uselogInUser = () => {
   const { logInUser } = useContext(Context);
   return logInUser;
@@ -52,6 +53,7 @@ export const useUser = () => {
   return user;
 };
 
+// This hook could be combined with `useUser`
 export const usesetUser = () => {
   const { setUser } = useContext(Context);
   return setUser;

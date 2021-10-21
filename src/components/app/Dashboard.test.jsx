@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
@@ -31,7 +31,7 @@ describe('Dashboard Component', () => {
 
     const inventoryGrid = await screen.findAllByRole('row');
 
-    expect(inventoryGrid).not.toBeEmptyDOMElement;
+    expect(inventoryGrid).not.toBeEmptyDOMElement();
     expect(container).toMatchSnapshot();
   });
 });

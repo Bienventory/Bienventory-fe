@@ -1,6 +1,7 @@
 import { Avatar } from '@mui/material';
 import React from 'react';
 
+// Each .bio-item here could be extracted into a presentational component
 export default function About() {
   return (
     <div>

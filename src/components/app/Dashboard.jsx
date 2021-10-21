@@ -1,21 +1,11 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-// import { Link } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { useUser } from '../../hooks/LoginProvider';
 
 const apiUrl = 'https://bienventory.herokuapp.com/api/v1/inventory/';
-
-// const rowsArray = dataArray.map((item) => {
-//   return {
-//     id: item.id,
-//     col1: item.item_name,
-//     col2: item.total_on_hand,
-//     col3: item.unit_type,
-//   };
-// });
 
 export default function Dashboard() {
   const user = useUser();
