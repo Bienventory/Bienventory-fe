@@ -79,13 +79,9 @@ export default function About() {
             </a>
           </h2>
           <p>
-            A queer trans Software Engineer. I love mutually developing with
+            A Full-stack Software Engineer. I love mutually developing with
             people and supporting everyone's common as well as individuals
-            goals. <a href="https://kubisiak.darkroom.tech/">Photography</a> and{' '}
-            <a href="https://docs.google.com/document/d/1Tb3ETGO7tTbJFjT9ZHOJqpmd-qvIyq-JAkz8kT4pQfY/edit">
-              Mutual Aid
-            </a>{' '}
-            are other avenues I like to participate in community.
+            goals. Outside my joy of coding I like film photography and dota 2.
           </p>
         </article>
       </div>
