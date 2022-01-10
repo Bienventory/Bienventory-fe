@@ -4,6 +4,7 @@ import { uselogInUser } from '../../hooks/LoginProvider';
 
 const responseGoogle = (response) => {
   console.log(response);
+  // Display something to the user that login failed?
 };
 
 export default function Login() {

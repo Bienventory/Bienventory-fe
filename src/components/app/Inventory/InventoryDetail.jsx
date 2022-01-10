@@ -1,7 +1,5 @@
 import { Modal, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import PlusButton from '../../Buttons/PlusButton';
-import MinusButton from '../../Buttons/MinusButton';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -92,10 +90,6 @@ export default function InventoryDetail() {
       <Typography variant="h2" align="center">
         {total_on_hand} {unit_type}
       </Typography>
-      {/* <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-        <MinusButton />
-        <PlusButton />
-      </Box> */}
     </div>
   );
 }

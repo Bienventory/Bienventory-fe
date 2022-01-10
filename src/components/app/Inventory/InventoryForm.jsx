@@ -7,7 +7,6 @@ import {
 } from '../../../services/fetchUtils';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '../../../hooks/LoginProvider';
-// const handleChange = () => {};
 
 //pass in click handler for either get OR put route depending on parent
 export default function InventoryForm(props) {

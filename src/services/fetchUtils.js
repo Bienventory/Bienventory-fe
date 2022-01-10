@@ -1,3 +1,4 @@
+// Consider moving "https://bienventory.herokuapp.com/api/v1/" into .env
 export const createUser = async (userData, phoneNumber) => {
   let response = await fetch('https://bienventory.herokuapp.com/api/v1/users', {
     method: 'POST',

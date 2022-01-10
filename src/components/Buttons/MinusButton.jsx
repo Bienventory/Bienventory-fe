@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { loadCSS } from 'fg-loadcss';
 import { red } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
 
 export default function MinusButton() {
-  React.useEffect(() => {
+  useEffect(() => {
     const node = loadCSS(
       'https://use.fontawesome.com/releases/v5.14.0/css/all.css',
       document.querySelector('#font-awesome-css') || document.head.firstChild

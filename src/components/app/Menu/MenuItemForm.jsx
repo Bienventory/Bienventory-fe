@@ -34,8 +34,6 @@ export default function MenuItemForm() {
     setMenuItemName(target.value);
   };
 
-  useEffect(() => {}, [ingredientsArray]);
-
   const handleIngredientArrayChange = (ingredientObj) => {
     const updatedArray = [...ingredientsArray, ingredientObj];
     setIngredientsArray(updatedArray);
